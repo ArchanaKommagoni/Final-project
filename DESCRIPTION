@@ -1,0 +1,13 @@
+Package: DataFrameBeautifier
+Type: Package
+Title: Beautify DataFrames Easily
+Version: 0.1.0
+Author: Archana Kommagoni
+Maintainer: Archana Kommagoni <ak14@usf.edu>
+Description: A small R package to beautify and highlight dataframes.
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports: DT
+RoxygenNote: 7.3.2
+
