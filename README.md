@@ -18,40 +18,66 @@ devtools::install_local("path/to/DataFrameBeautifier")
 Usage
 Here’s how to use the functions in the DataFrameBeautifier package:
 
+# Define %or% operator 
+%or% <- function(x, y) {
+  if (is.null(x)) y else x
+}
+# Load necessary libraries
+library(magrittr)  # or dplyr
+library(DT)  # for DT::datatable
 library(DataFrameBeautifier)
 
-# Create an example data frame
+# Create a sample data frame
 df <- data.frame(
-  Name = c("Alice", "Bob", NA),
-  Score = c(95, NA, 88),
-  Age = c(23, 25, 22)
+  Name = c("Alice", "Bob", NA, "Daisy"),
+  Score = c(95, NA, 88, 91),
+  Age = c(23, 25, 22, 21)
 )
 
-# Highlight missing values
-highlight_na(df)
+# Highlight NA values
+tag_na(df)
 
-# Highlight maximum values in the data frame
-highlight_max(df)
+# Highlight Max values
+tag_high(df)
 
-# Highlight minimum values in the data frame
-highlight_min(df)
+# Highlight Min values
+tag_low(df)
 
-# Display data types of columns
-pretty_types(df)
+# Use the combined highlighter with custom colors
+style_data(
+  df,
+  what = c("na", "max", "min"),
+  colset = list(
+    na = "lightcoral",
+    max = "lightgreen",
+    min = "lightblue"
+  )
+)
 
-# Combine all highlights and pretty types in one
-beautify_df(df, highlight = c("na", "max", "min"), colors = list(na = "red", max = "lightgreen", min = "lightblue"))
+# Show column types
+col_types(df)
 
+# Test NULL fallback operator
+NULL %or% "fallback"  # should return "fallback"
+"notnull" %or% "fallback"  # should return "notnull"
 📁 Functions
-highlight_na(df)
+tag_na(df)
 
-highlight_max(df)
+tag_high(df)
 
-highlight_min(df)
+tag_low(df)
 
-pretty_types(df)
+col_types(df)
 
-beautify_df(df, highlight = ..., colors = ...)
+style_data(
+  df,
+  what = c("na", "max", "min"),
+  colset = list(
+    na = "lightcoral",
+    max = "lightgreen",
+    min = "lightblue"
+  )
+)
 
 👤 Author
 Archana Kommagoni
